@@ -1,0 +1,139 @@
+{
+  "ran_utc": "2026-10-28T08:04:25.577Z",
+  "node": "v22.22.0",
+  "dist": "dist",
+  "total": 26,
+  "failed": 0,
+  "results": [
+    {
+      "name": "every internal link resolves to a built file",
+      "ok": true,
+      "detail": "16 HTML files; broken: "
+    },
+    {
+      "name": "every image, script, stylesheet and icon path resolves",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every #anchor link points to an existing id",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every page has title, description, canonical, one h1, lang, viewport, main landmark, skip link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every image has alt text and width/height",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "heading levels do not skip downward",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD blocks parse",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "pages expose real text without JavaScript",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "page titles are unique",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "meta descriptions are unique",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every sitemap URL exists in the build",
+      "ok": true,
+      "detail": "4 URLs; missing: "
+    },
+    {
+      "name": "PREVIEW BUILD: every page, including the 404, asks search engines not to index or follow it",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PREVIEW BUILD: the preview banner on every page (except the 404) says every page asks search engines not to index it",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PREVIEW BUILD: robots.txt keeps crawling allowed so crawlers can read the noindex tag, and flags the preview",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "canonical URLs use the configured origin",
+      "ok": true,
+      "detail": "https://resetminutes.example"
+    },
+    {
+      "name": "robots.txt allows crawling (a crawler must fetch a page to see its noindex tag) and names the sitemap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Atom feed has required elements",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "draft articles are absent from pages, sitemap, feed, search index and navigation",
+      "ok": true,
+      "detail": "drafts checked: never-mix-cleaners-chart; leaks: "
+    },
+    {
+      "name": "search index parses and lists the published article",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "web manifest parses and its icons exist",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no ad code, tracking script or form submission target ships by default",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "placeholders are limited to template pages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "article page has no leftover shortcodes or placeholders",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "text colour pairs meet WCAG AA 4.5:1",
+      "ok": true,
+      "detail": "ink/bg=14.19, ink/surface=15.71, ink-soft/bg=7.59, ink-soft/surface=8.41, accent-dark/bg=6.96, accent-dark/surface=7.71, accent-dark/sand=5.94, ink-soft/sand=6.48"
+    },
+    {
+      "name": "white text on the accent button meets 4.5:1",
+      "ok": true,
+      "detail": "5.48"
+    },
+    {
+      "name": "footer text and focus ring contrast",
+      "ok": true,
+      "detail": "footer=13.66 focus=5.19"
+    }
+  ]
+}

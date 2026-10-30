@@ -1,0 +1,254 @@
+{
+  "ran_utc": "2026-10-28T08:04:27.296Z",
+  "node": "v22.22.0",
+  "dist": "dist-launch",
+  "total": 49,
+  "failed": 0,
+  "results": [
+    {
+      "name": "every internal link resolves to a built file",
+      "ok": true,
+      "detail": "16 HTML files; broken: "
+    },
+    {
+      "name": "every image, script, stylesheet and icon path resolves",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every #anchor link points to an existing id",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every page has title, description, canonical, one h1, lang, viewport, main landmark, skip link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every image has alt text and width/height",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "heading levels do not skip downward",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON-LD blocks parse",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "pages expose real text without JavaScript",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "page titles are unique",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "meta descriptions are unique",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every sitemap URL exists in the build",
+      "ok": true,
+      "detail": "4 URLs; missing: "
+    },
+    {
+      "name": "LAUNCH BUILD: no preview banner and no \"preview-build dates\" note anywhere",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "LAUNCH BUILD: indexable pages say \"index, follow\" and the home page is one of them",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no noindex page is listed in the sitemap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every indexable page is in the sitemap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "canonical URLs use the configured origin",
+      "ok": true,
+      "detail": "https://resetminutes.example"
+    },
+    {
+      "name": "robots.txt allows crawling (a crawler must fetch a page to see its noindex tag) and names the sitemap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Atom feed has required elements",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "draft articles are absent from pages, sitemap, feed, search index and navigation",
+      "ok": true,
+      "detail": "drafts checked: never-mix-cleaners-chart; leaks: "
+    },
+    {
+      "name": "search index parses and lists the published article",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "web manifest parses and its icons exist",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no ad code, tracking script or form submission target ships by default",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "placeholders are limited to template pages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "article page has no leftover shortcodes or placeholders",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "text colour pairs meet WCAG AA 4.5:1",
+      "ok": true,
+      "detail": "ink/bg=14.19, ink/surface=15.71, ink-soft/bg=7.59, ink-soft/surface=8.41, accent-dark/bg=6.96, accent-dark/surface=7.71, accent-dark/sand=5.94, ink-soft/sand=6.48"
+    },
+    {
+      "name": "white text on the accent button meets 4.5:1",
+      "ok": true,
+      "detail": "5.48"
+    },
+    {
+      "name": "footer text and focus ring contrast",
+      "ok": true,
+      "detail": "footer=13.66 focus=5.19"
+    },
+    {
+      "name": "NEW ARTICLE: a valid new content file builds successfully",
+      "ok": true,
+      "detail": "Built 17 pages, 2 published article(s), 1 draft(s) excluded -> ../../../../../../tmp/rm-test-w7QP67/add_out "
+    },
+    {
+      "name": "NEW ARTICLE: real HTML page generated from the shared template",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "NEW ARTICLE: homepage latest list updated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "NEW ARTICLE: category hub lists it",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "NEW ARTICLE: guides archive, search index, feed and sitemap include it",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "NEW ARTICLE: related link points back to Article 001 and Article 001 is unchanged in source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "NEW ARTICLE: long title page has one h1 and no unresolved links",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "VALIDATION: duplicate slug stops the build with a helpful message",
+      "ok": true,
+      "detail": "duplicate slug \"small-apartment-cleaning-schedule\" (also in src/content/articles/dup.md)"
+    },
+    {
+      "name": "VALIDATION: missing hero image stops the build",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "VALIDATION: unknown related article ID stops the build",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "VALIDATION: unknown category stops the build",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "VALIDATION: missing required field stops the build",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "VALIDATION: malformed date stops the build",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "DRAFTS: a new draft is accepted but not published anywhere",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "NEW CATEGORY: adding a category record creates its hub and footer link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ORIGIN: VERCEL_PROJECT_PRODUCTION_URL replaces the placeholder in every canonical, the sitemap, robots.txt, the feed and site-config",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ORIGIN: no output file mentions the placeholder host once a hosting address is available",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ORIGIN: the build log says where the origin came from",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ORIGIN (preview build): pages stay noindex,nofollow, canonicals use the hosting address, banner does not mention a placeholder",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ORIGIN: an explicit SITE_ORIGIN takes precedence over the Vercel variable (trailing slash tolerated)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ORIGIN: a non-https or malformed value is ignored and the page honestly says the origin is a placeholder",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ORIGIN: a real domain set in site.config.json (originIsPlaceholder false) is never overridden by environment variables",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "all-three",
+    "title": "All three printables in one PDF",
+    "description": "The daily card, the weekly room grid and the monthly rotation together. Three pages.",
+    "pdf": "/assets/printables/all-printables.pdf",
+    "preview": "/assets/printables/preview-daily-reset-card.png",
+    "previewAlt": "Preview of page one of the printable pack: the daily card with six reset steps and the three-task minimum day, each with a checkbox.",
+    "previewWidth": 816,
+    "previewHeight": 1056,
+    "pages": 3
+  },
+  {
+    "id": "daily-card",
+    "title": "Daily card",
+    "description": "The 10-minute daily reset and the 5-minute minimum day, with a week tracker.",
+    "pdf": "/assets/printables/daily-reset-card.pdf",
+    "preview": "/assets/printables/preview-daily-reset-card.png",
+    "previewAlt": "Preview of the daily card: six reset steps with minute budgets, the three-task minimum day and a safety note.",
+    "previewWidth": 816,
+    "previewHeight": 1056,
+    "pages": 1
+  },
+  {
+    "id": "weekly-grid",
+    "title": "Weekly room grid",
+    "description": "Monday to Friday, one room a day, with a short list and a full list for each room.",
+    "pdf": "/assets/printables/weekly-room-grid.pdf",
+    "preview": "/assets/printables/preview-weekly-room-grid.png",
+    "previewAlt": "Preview of the weekly room grid: bathroom, bedroom, kitchen and living area short and full lists, plus a roommate zone section.",
+    "previewWidth": 816,
+    "previewHeight": 1056,
+    "pages": 1
+  },
+  {
+    "id": "monthly-rotation",
+    "title": "Monthly rotation",
+    "description": "One deeper job a week, rental-friendly habits and space for notes.",
+    "pdf": "/assets/printables/monthly-rotation.pdf",
+    "preview": "/assets/printables/preview-monthly-rotation.png",
+    "previewAlt": "Preview of the monthly rotation: four weekly deeper jobs with checkboxes and dates, rental habits and a notes area.",
+    "previewWidth": 816,
+    "previewHeight": 1056,
+    "pages": 1
+  }
+]

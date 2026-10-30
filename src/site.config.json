@@ -1,0 +1,19 @@
+{
+  "_readme": "Single place for site-wide values. Human-only fields are blank on purpose. After you buy a domain: set siteOrigin, set originIsPlaceholder to false, then rebuild. See WEBSITE_ARCHITECTURE_AND_UPLOAD_GUIDE.md.",
+  "siteName": "Reset Minutes",
+  "tagline": "Time-boxed cleaning routines for small homes",
+  "siteDescription": "Time-boxed cleaning routines, a minimum day for rough weeks and free printable checklists for renters and busy households in small homes.",
+  "language": "en-US",
+  "siteOrigin": "https://resetminutes.example",
+  "originIsPlaceholder": true,
+  "previewMode": true,
+  "contactEmail": "",
+  "author": { "name": "", "url": "" },
+  "social": { "pinterest": "" },
+  "analytics": { "ga4MeasurementId": "" },
+  "ads": { "enabled": false },
+  "newsletter": { "enabled": false },
+  "minArticlesForIndexableHub": 3,
+  "defaultOgImage": "/assets/images/og-default.png",
+  "themeColor": "#14213d"
+}

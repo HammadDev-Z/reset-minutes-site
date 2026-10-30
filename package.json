@@ -1,0 +1,17 @@
+{
+  "name": "reset-minutes-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static, content-driven site for Reset Minutes. Zero runtime dependencies.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/validate.mjs && node scripts/build.mjs --out dist",
+    "build:upload": "node scripts/validate.mjs && node scripts/build.mjs --out ../website_upload --registers ../generated_registers",
+    "build:launch": "node scripts/validate.mjs && node scripts/build.mjs --out dist-launch --launch --registers dist-launch/_reg",
+    "serve": "node scripts/serve.mjs dist 4173",
+    "test": "node scripts/validate.mjs && node scripts/build.mjs --out dist && node scripts/test.mjs dist && node scripts/build.mjs --out dist-launch --launch --registers dist-launch/_reg && node scripts/test.mjs dist-launch",
+    "check:workflow": "node scripts/workflow_check.mjs"
+  }
+}

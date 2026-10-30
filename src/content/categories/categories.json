@@ -1,0 +1,34 @@
+[
+  {
+    "id": "daily-resets",
+    "slug": "daily-resets",
+    "name": "Daily Resets",
+    "description": "Short, time-boxed routines that keep a small home livable, including a minimum version for rough days.",
+    "intro": "Routines sized to the time you have: a few minutes on a rough day, ten on a normal one, more when you have it. Every time is a budget, not a promise.",
+    "order": 1
+  },
+  {
+    "id": "room-resets",
+    "slug": "room-resets",
+    "name": "Room Resets",
+    "description": "Room-by-room checklists with a short list and a full list for the kitchen, bathroom, bedroom and living area.",
+    "intro": "One room at a time, in an order that makes sense: clear, apply cleaner, wipe, floor last.",
+    "order": 2
+  },
+  {
+    "id": "safe-cleaning",
+    "slug": "safe-cleaning",
+    "name": "Safe Cleaning",
+    "description": "Cleaning-product safety basics, each point tied to a poison-center, CDC or EPA source.",
+    "intro": "What official sources actually say about mixing, ventilating, storing and reading labels on household cleaners.",
+    "order": 3
+  },
+  {
+    "id": "printables",
+    "slug": "printables",
+    "name": "Printables",
+    "description": "Free checklists on US Letter paper that work in black and white. No email address needed.",
+    "intro": "Print them, tape them inside a cabinet, write on them.",
+    "order": 4
+  }
+]
