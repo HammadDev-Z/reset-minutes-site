@@ -15,6 +15,8 @@ const tmp = mkdtempSync(join(tmpdir(), 'wf-'));
 const work = join(tmp, 'p');
 cpSync(root, work, { recursive: true, filter: (s) => !/[\\/](dist|node_modules|\.vercel)([\\/]|$)/.test(s) });
 
+// The canonical host comes from the project's own config, so this check stays valid before and after a real domain is set.
+const ORIGIN = JSON.parse(readFileSync(join(work, 'src', 'site.config.json'), 'utf8')).siteOrigin.replace(/\/$/, '');
 const SLUG = 'workflow-sample-article';
 const MARK = 'WORKFLOW-SAMPLE-MARKER-7731';
 const file = join(work, 'src', 'content', 'articles', `${SLUG}.md`);
@@ -61,7 +63,7 @@ try {
   const page = join(dist, 'guides', SLUG, 'index.html');
   check('published: article page exists', existsSync(page));
   const html = existsSync(page) ? readFileSync(page, 'utf8') : '';
-  check('published: page has its own canonical', html.includes(`rel="canonical" href="https://resetminutes.example/guides/${SLUG}/"`));
+  check('published: page has its own canonical', html.includes(`rel="canonical" href="${ORIGIN}/guides/${SLUG}/"`));
   check('published: page has exactly one h1', (html.match(/<h1[\s>]/g) || []).length === 1);
   const rd = (p) => existsSync(join(dist, p)) ? readFileSync(join(dist, p), 'utf8') : '';
   check('published: listed on home page', rd('index.html').includes(`/guides/${SLUG}/`));

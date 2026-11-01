@@ -152,7 +152,13 @@ if (!previewBuilt) {
 // The two origin variables are blanked unless a test sets them, so the result never depends on the developer's environment.
 function runBuild(srcDir, outDir, env = {}, launch = true) { return spawnSync(process.execPath, [path.join(ROOT, 'scripts/build.mjs'), '--src', srcDir, '--out', outDir, '--registers', path.join(outDir, '_reg'), ...(launch ? ['--launch'] : [])], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, SITE_ORIGIN: '', VERCEL_PROJECT_PRODUCTION_URL: '', ...env } }); }
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'rm-test-'));
-const copy = (name) => { const d = path.join(tmp, name); fs.cpSync(path.join(ROOT, 'src'), d, { recursive: true }); return d; };
+// Fixtures always start from the pre-launch placeholder config, whatever the real site.config.json says, so the origin logic can be tested after launch.
+const copy = (name) => {
+  const d = path.join(tmp, name); fs.cpSync(path.join(ROOT, 'src'), d, { recursive: true });
+  const cf = path.join(d, 'site.config.json'); const c = JSON.parse(fs.readFileSync(cf, 'utf8'));
+  c.siteOrigin = 'https://resetminutes.example'; c.originIsPlaceholder = true; c.previewMode = true; fs.writeFileSync(cf, JSON.stringify(c));
+  return d;
+};
 const art = (extra = {}) => {
   const base = { id: 'A900', title: 'Fixture Bathroom Guide With A Fairly Long Title To Test Wrapping On Narrow Screens', slug: 'fixture-bathroom-guide', status: 'published', datePublished: '2026-11-01', dateModified: '2026-11-02', description: 'A fixture article used only by the automated test.', category: 'room-resets', heroImage: '/assets/images/hero-small-apartment-schedule.svg', heroAlt: 'Fixture illustration', heroWidth: 1200, heroHeight: 675, metaTitle: 'Fixture Bathroom Guide', metaDescription: 'Fixture article for the test suite.', canonicalPath: '/guides/fixture-bathroom-guide/', related: '[A001]', ...extra };
   const fm = Object.entries(base).filter(([, v]) => v !== undefined).map(([k, v]) => `${k}: ${typeof v === 'string' && !/^\[/.test(v) && !/^\//.test(v) ? JSON.stringify(v) : v}`).join('\n');

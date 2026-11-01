@@ -1,5 +1,5 @@
 {
-  "ran_utc": "2026-10-28T08:04:27.296Z",
+  "ran_utc": "2026-11-01T20:59:09.481Z",
   "node": "v22.22.0",
   "dist": "dist-launch",
   "total": 49,
@@ -83,7 +83,7 @@
     {
       "name": "canonical URLs use the configured origin",
       "ok": true,
-      "detail": "https://resetminutes.example"
+      "detail": "https://www.resetminutes.com"
     },
     {
       "name": "robots.txt allows crawling (a crawler must fetch a page to see its noindex tag) and names the sitemap",
@@ -143,7 +143,7 @@
     {
       "name": "NEW ARTICLE: a valid new content file builds successfully",
       "ok": true,
-      "detail": "Built 17 pages, 2 published article(s), 1 draft(s) excluded -> ../../../../../../tmp/rm-test-w7QP67/add_out "
+      "detail": "Built 17 pages, 2 published article(s), 1 draft(s) excluded -> ../../../tmp/rm-test-ChtA3G/add_out "
     },
     {
       "name": "NEW ARTICLE: real HTML page generated from the shared template",

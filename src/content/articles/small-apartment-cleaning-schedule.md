@@ -3,8 +3,8 @@ id: A001
 title: "Small Apartment Cleaning Schedule: A 10-Minute Daily Reset + One Room a Day (Free Printable)"
 slug: small-apartment-cleaning-schedule
 status: published
-datePublished: 2026-10-28
-dateModified: 2026-10-28
+datePublished: 2026-11-01
+dateModified: 2026-11-01
 description: "A small apartment cleaning schedule with a 10-minute daily reset, one room a day and a 5-minute minimum day. Free printable, no email needed."
 metaTitle: "Small Apartment Cleaning Schedule (Free Printable)"
 metaDescription: "A small apartment cleaning schedule with a 10-minute daily reset, one room a day and a 5-minute minimum day. Free printable, no email needed."
