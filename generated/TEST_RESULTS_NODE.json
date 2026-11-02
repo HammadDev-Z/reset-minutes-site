@@ -1,8 +1,8 @@
 {
-  "ran_utc": "2026-11-01T20:59:09.481Z",
+  "ran_utc": "2026-11-02T11:55:14.566Z",
   "node": "v22.22.0",
   "dist": "dist-launch",
-  "total": 49,
+  "total": 59,
   "failed": 0,
   "results": [
     {
@@ -143,7 +143,7 @@
     {
       "name": "NEW ARTICLE: a valid new content file builds successfully",
       "ok": true,
-      "detail": "Built 17 pages, 2 published article(s), 1 draft(s) excluded -> ../../../tmp/rm-test-ChtA3G/add_out "
+      "detail": "Built 17 pages, 2 published article(s), 1 draft(s) excluded -> ../../../tmp/rm-test-owqNxT/add_out "
     },
     {
       "name": "NEW ARTICLE: real HTML page generated from the shared template",
@@ -249,6 +249,56 @@
       "name": "ORIGIN: a real domain set in site.config.json (originIsPlaceholder false) is never overridden by environment variables",
       "ok": true,
       "detail": ""
+    },
+    {
+      "name": "PINTEREST: the article has a visible 2:3 Pin image with alt text and dimensions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PINTEREST: the Save button uses the official Pinterest share URL with this page and image, opens safely in a new tab and loads no third-party script",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PINTEREST: article metadata (published, modified, section) and a raster image in the BlogPosting data",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PINTEREST: no site-claim tag is written while no verification code is configured",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ADS (default off): no ad slots, no has-ads class and no ad markup anywhere in the article page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "PINTEREST: a configured verification code is written once as a p:domain_verify meta tag on every page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ADS (enabled): in-content, sidebar and after-article slots are labelled and a slot never comes before the first heading",
+      "ok": true,
+      "detail": "6 slots"
+    },
+    {
+      "name": "ADS (enabled): body carries has-ads so the stylesheet reserves slot height and footer room",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ADS (enabled): nothing in the output claims Journey, Mediavine or any ad network approval",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "VALIDATION: pinImage without pinImageAlt stops the build with a clear message",
+      "ok": true,
+      "detail": "pinImageAlt is required with pinImage"
     }
   ]
 }

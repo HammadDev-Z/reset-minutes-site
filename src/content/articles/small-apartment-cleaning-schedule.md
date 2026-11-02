@@ -17,6 +17,11 @@ heroWidth: 1200
 heroHeight: 675
 printable: /assets/printables/all-printables.pdf
 printableLabel: "Free printables (PDF, 3 pages, US Letter)"
+pinImage: /assets/images/pins/daily-reset-checklist-pin.png
+pinImageAlt: "Checklist titled The 10-Minute Daily Reset with six tasks and their time budgets: put ten things back, dishes, counters and stovetop, trash check, walkway floor pass and bathroom sink."
+pinImageWidth: 1000
+pinImageHeight: 1500
+pinDescription: "The 10-minute daily reset for a small apartment: six short tasks with time budgets, plus a free printable checklist and a 5-minute minimum day."
 related: []
 toc: true
 ---
@@ -163,7 +168,9 @@ Pick tonight's tier, set a timer, and stop when it rings. Download the card and 
 
 ## How this guide was made
 
-This guide was researched from official safety sources and written for readers who rent or share small homes. The times are time budgets, not measurements. The author, the process and any use of AI are described on our [Editorial Policy](/editorial-policy/) page. ### Sources and access dates
+This guide was researched from official safety sources and written for readers who rent or share small homes. The times are time budgets, not measurements. The author, the process and any use of AI are described on our [Editorial Policy](/editorial-policy/) page.
+
+### Sources and access dates
 
 | Source | Publisher | Date shown | Accessed | Supports |
 |---|---|---|---|---|

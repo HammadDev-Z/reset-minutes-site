@@ -55,6 +55,11 @@ export function loadContent(srcDir = path.join(ROOT, 'src')) {
     if (d.canonicalPath) { if (canon.has(d.canonicalPath)) errors.push(`${where}: duplicate canonicalPath "${d.canonicalPath}"`); canon.set(d.canonicalPath, where); if (!/^\/.*\/$/.test(d.canonicalPath)) errors.push(`${where}: canonicalPath must start and end with "/"`); if (d.slug && d.canonicalPath !== `/guides/${d.slug}/`) warnings.push(`${where}: canonicalPath "${d.canonicalPath}" differs from /guides/${d.slug}/ (the page is built at /guides/<slug>/)`); }
     if (d.category && !catIds.has(d.category)) errors.push(`${where}: category "${d.category}" does not exist in categories.json (known: ${[...catIds].join(', ')})`);
     if (d.heroImage && !assetExists(d.heroImage)) errors.push(`${where}: heroImage file not found: src${d.heroImage}`);
+    if (d.pinImage) {
+      if (!assetExists(d.pinImage)) errors.push(`${where}: pinImage file not found: src${d.pinImage}`);
+      for (const k of ['pinImageAlt', 'pinImageWidth', 'pinImageHeight']) if (!d[k]) errors.push(`${where}: ${k} is required with pinImage`);
+      if (d.pinImageWidth && d.pinImageHeight && Math.abs(d.pinImageHeight / d.pinImageWidth - 1.5) > 0.01) warnings.push(`${where}: pinImage is not 2:3 (Pinterest recommends a 2:3 vertical image)`);
+    }
     if (d.printable && !assetExists(d.printable)) errors.push(`${where}: printable file not found: src${d.printable}`);
     if (d.heroImage && (!d.heroWidth || !d.heroHeight)) errors.push(`${where}: heroWidth and heroHeight are required with heroImage`);
     if (d.tags !== undefined && !Array.isArray(d.tags)) errors.push(`${where}: tags must be a list like [a, b]`);

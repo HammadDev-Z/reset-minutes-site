@@ -246,6 +246,35 @@ const art = (extra = {}) => {
     check('ORIGIN: a real domain set in site.config.json (originIsPlaceholder false) is never overridden by environment variables', r.status === 0 && canonsOf(o).every((x) => x.startsWith('https://real-domain.example.org/')) && outHas(o, vercelHost).length === 0 && outHas(o, 'staging.example-host.dev').length === 0);
   }
 }
+// ---- 7. Pinterest and ad-ready layout ----
+{
+  const ART = 'guides/small-apartment-cleaning-schedule/index.html';
+  const editCfg = (dir, fn) => { const cf = path.join(dir, 'site.config.json'); const c = JSON.parse(fs.readFileSync(cf, 'utf8')); fn(c); fs.writeFileSync(cf, JSON.stringify(c)); };
+  { // defaults: Pin block, Rich Pin metadata, no verification tag, no ad slots
+    const s = copy('p1'); const o = path.join(tmp, 'p1_out'); const r = runBuild(s, o); const h = fs.readFileSync(path.join(o, ART), 'utf8');
+    const save = (h.match(/class="btn btn-pin" href="([^"]*)"/) || [])[1] || '';
+    check('PINTEREST: the article has a visible 2:3 Pin image with alt text and dimensions', r.status === 0 && /<section class="save-box"[^>]*><img src="[^"]*daily-reset-checklist-pin\.png" alt="[^"]{20,}" width="1000" height="1500"/.test(h));
+    check('PINTEREST: the Save button uses the official Pinterest share URL with this page and image, opens safely in a new tab and loads no third-party script', save.startsWith('https://www.pinterest.com/pin/create/button/?url=') && save.includes(encodeURIComponent('/guides/small-apartment-cleaning-schedule/')) && /rel="noopener noreferrer"/.test(h) && !/<script[^>]+src="https?:\/\/[^"]*pinterest/.test(h));
+    check('PINTEREST: article metadata (published, modified, section) and a raster image in the BlogPosting data', /property="article:published_time" content="\d{4}-\d{2}-\d{2}"/.test(h) && /property="article:modified_time"/.test(h) && /property="article:section"/.test(h) && /"image":\["[^"]*daily-reset-checklist-pin\.png"/.test(h));
+    check('PINTEREST: no site-claim tag is written while no verification code is configured', !h.includes('p:domain_verify'));
+    check('ADS (default off): no ad slots, no has-ads class and no ad markup anywhere in the article page', !/ad-slot|has-ads/.test(h.replace(/<style[\s\S]*?<\/style>/g, '')));
+  }
+  { // verification code configured
+    const s = copy('p2'); editCfg(s, (c) => { c.social.pinterestDomainVerify = 'abc123TESTcode'; }); const o = path.join(tmp, 'p2_out'); const r = runBuild(s, o);
+    check('PINTEREST: a configured verification code is written once as a p:domain_verify meta tag on every page', r.status === 0 && walk(o).filter((f) => f.endsWith('.html')).every((f) => (fs.readFileSync(f, 'utf8').match(/name="p:domain_verify" content="abc123TESTcode"/g) || []).length === 1));
+  }
+  { // ads enabled: reserved, labelled slots; sidebar slot; none before the first section
+    const s = copy('p3'); editCfg(s, (c) => { c.ads.enabled = true; }); const o = path.join(tmp, 'p3_out'); const r = runBuild(s, o); const h = fs.readFileSync(path.join(o, ART), 'utf8');
+    const slots = h.match(/<aside class="ad-slot[^"]*" data-slot="[^"]*" aria-label="Advertisement">/g) || [];
+    check('ADS (enabled): in-content, sidebar and after-article slots are labelled and a slot never comes before the first heading', r.status === 0 && slots.length >= 3 && /data-slot="sidebar"/.test(h) && /data-slot="after-article"/.test(h) && h.indexOf('data-slot="in-content-') > h.indexOf('<h2'), `${slots.length} slots`);
+    check('ADS (enabled): body carries has-ads so the stylesheet reserves slot height and footer room', /<body class="[^"]*has-ads/.test(h) && /\.has-ads \.ad-slot \{ min-height: 280px/.test(fs.readFileSync(path.join(o, 'assets/css/styles.css'), 'utf8')));
+    check('ADS (enabled): nothing in the output claims Journey, Mediavine or any ad network approval', !/journey|mediavine|raptive|adsense/i.test(h.replace(/<style[\s\S]*?<\/style>/g, '')));
+  }
+  { // validation of Pin fields
+    const s = copy('p4'); const f = path.join(s, 'content/articles/small-apartment-cleaning-schedule.md'); fs.writeFileSync(f, fs.readFileSync(f, 'utf8').replace(/^pinImageAlt:.*\n/m, ''));
+    const r = runBuild(s, path.join(tmp, 'p4_out')); check('VALIDATION: pinImage without pinImageAlt stops the build with a clear message', r.status === 1 && /pinImageAlt is required with pinImage/.test(r.stderr), (r.stderr.match(/pinImage[^\n]*/) || [''])[0]);
+  }
+}
 fs.rmSync(tmp, { recursive: true, force: true });
 }
 

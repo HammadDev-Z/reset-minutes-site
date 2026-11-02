@@ -9,7 +9,7 @@
   "previewMode": false,
   "contactEmail": "",
   "author": { "name": "", "url": "" },
-  "social": { "pinterest": "" },
+  "social": { "pinterest": "", "pinterestDomainVerify": "" },
   "analytics": { "ga4MeasurementId": "" },
   "ads": { "enabled": false },
   "newsletter": { "enabled": false },

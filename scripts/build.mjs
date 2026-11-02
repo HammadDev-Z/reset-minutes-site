@@ -1,4 +1,4 @@
-﻿// Static site build. No dependencies. Usage: node scripts/build.mjs [--out dist] [--src src] [--registers generated]
+// Static site build. No dependencies. Usage: node scripts/build.mjs [--out dist] [--src src] [--registers generated]
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadContent, ROOT } from './content.mjs';
@@ -76,7 +76,7 @@ const NAV = [
 ];
 
 // Wrap content in the shared layout. `url` is the page's own site-root path, e.g. "/guides/".
-function layout({ url, title, description, canonicalPath, noindex = false, ogType = 'website', ld = [], main, bodyClass = '', type = 'page', h1Expected = true, lastmod = '' }) {
+function layout({ url, title, description, canonicalPath, noindex = false, ogType = 'website', ld = [], main, bodyClass = '', type = 'page', h1Expected = true, lastmod = '', extraHead = '' }) {
   const depth = url === '/' ? 0 : url.split('/').filter(Boolean).length;
   const prefix = depth === 0 ? './' : '../'.repeat(depth);
   const fullTitle = title === config.siteName ? `${config.siteName}: ${config.tagline}` : `${title} | ${config.siteName}`;
@@ -104,6 +104,7 @@ function layout({ url, title, description, canonicalPath, noindex = false, ogTyp
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+${config.social.pinterestDomainVerify ? `<meta name="p:domain_verify" content="${esc(config.social.pinterestDomainVerify)}">\n` : ''}${extraHead}
 <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
@@ -114,7 +115,7 @@ function layout({ url, title, description, canonicalPath, noindex = false, ogTyp
 ${ld.join('\n')}
 ${ga}
 </head>
-<body class="${bodyClass}">
+<body class="${[bodyClass, config.ads.enabled ? 'has-ads' : ''].filter(Boolean).join(' ')}">
 <a class="skip-link" href="#main">Skip to content</a>
 ${banner}
 <header class="site-header">
@@ -130,7 +131,7 @@ ${main}
 <div class="footer-grid">
 <div><h2>${esc(config.siteName)}</h2><p>${esc(config.siteDescription)}</p><p>Times on this site are time budgets, not measurements. Illustrations are labelled as illustrations.</p></div>
 <div><h2>Explore</h2><ul><li><a href="/start-here/">Start here</a></li><li><a href="/guides/">All guides</a></li><li><a href="/printables/">Free printables</a></li><li><a href="/search/">Search</a></li>${cats}</ul></div>
-<div><h2>About the site</h2><ul><li><a href="/about/">About</a></li><li><a href="/contact/">Contact</a></li><li><a href="/editorial-policy/">Editorial policy</a></li><li><a href="/privacy-policy/">Privacy policy</a></li><li><a href="/terms/">Terms of use</a></li><li><a href="/feed.xml">Feed (Atom)</a></li></ul></div>
+<div><h2>About the site</h2><ul><li><a href="/about/">About</a></li><li><a href="/contact/">Contact</a></li><li><a href="/editorial-policy/">Editorial policy</a></li><li><a href="/privacy-policy/">Privacy policy</a></li><li><a href="/terms/">Terms of use</a></li><li><a href="/feed.xml">Feed (Atom)</a></li>${config.social.pinterest ? `<li><a href="${esc(config.social.pinterest)}" rel="me noopener">Follow on Pinterest</a></li>` : ''}</ul></div>
 </div>
 <p class="footer-note">&copy; ${YEAR} ${esc(config.siteName)}. General information only, not legal or medical advice. Follow product labels and care instructions.</p>
 </div>
@@ -149,10 +150,10 @@ ${main}
 }
 
 // -------- components --------
-function printableCard(pdfPath, label) {
+function printableCard(pdfPath, label, id = '') {
   const pr = printables.find((p) => p.pdf === pdfPath);
   const img = pr ? `<img src="${pr.preview}" alt="${esc(pr.previewAlt)}" width="${pr.previewWidth}" height="${pr.previewHeight}" loading="lazy" decoding="async">` : '';
-  return `<aside class="printable-cta" aria-label="Free printable">${img}<div><p><strong>${esc(label || 'Free printable')}</strong></p><p class="meta">Free. No email address needed. US Letter, readable in black and white.</p><a class="btn" href="${pdfPath}">Download the PDF</a></div></aside>`;
+  return `<aside class="printable-cta"${id ? ` id="${id}"` : ''} aria-label="Free printable">${img}<div><p><strong>${esc(label || 'Free printable')}</strong></p><p class="meta">Free. No email address needed. US Letter, readable in black and white.</p><a class="btn" href="${pdfPath}">Download the PDF</a></div></aside>`;
 }
 function postItem(a, headingLevel = 3) {
   const d = a.data; const c = catById[d.category];
@@ -174,7 +175,7 @@ function buildHome() {
     ['40', '40 minutes', 'Reset plus a full room list', '#one-room-a-day-monday-to-friday']
   ];
   const tierHref = featured ? articleUrl(featured) : '/start-here/';
-  const tierHtml = tiers.map(([n, u, t, h]) => `<div class="card tier is-link"><p class="num">${n}</p><p class="unit">minutes</p><h3><a class="stretched" href="${tierHref}${featured ? h : ''}">${t}</a></h3></div>`).join('');
+  const tierHtml = tiers.map(([n, u, t, h]) => `<div class="card tier is-link"><p class="num">${n}</p><p class="unit">minutes</p><h3><a class="stretched" href="${tierHref}${featured ? h : ''}">${t}<span class="arrow" aria-hidden="true"> &rarr;</span></a></h3></div>`).join('');
   const catHtml = categories.map((c) => { const n = articlesIn(c.id).length; return `<div class="card is-link"><h3><a class="stretched" href="/category/${c.slug}/">${esc(c.name)}</a></h3><p>${esc(c.description)}</p><p class="meta">${n ? plural(n, 'guide') : 'First guides coming soon'}</p></div>`; }).join('');
   const prev = printables[0];
   const main = `<main id="main" tabindex="-1">
@@ -199,30 +200,44 @@ function buildArticle(a) {
   const parts = renderMarkdown(a.body);
   let html = parts.html;
   const hasShortcode = html.includes('{{printable}}');
-  const card = d.printable ? printableCard(d.printable, d.printableLabel) : '';
+  const card = d.printable ? printableCard(d.printable, d.printableLabel, 'free-printable') : '';
   html = html.replace(/<p>\{\{printable\}\}<\/p>/g, card).replace(/\{\{printable\}\}/g, card);
   if (d.printable && !hasShortcode) html += card;
-  if (config.ads.enabled) html += '<aside class="ad-slot" data-slot="after-article" aria-label="Advertisement slot"></aside>';
+  // Ad-ready layout: reserved, labelled slots exist only when ads.enabled is true (default false). They reserve height so a late-loading ad cannot shift the text.
+  const slot = (name, cls = '') => `<aside class="ad-slot ${cls}" data-slot="${name}" aria-label="Advertisement"></aside>`;
+  if (config.ads.enabled) {
+    let h2Seen = 0;
+    html = html.replace(/<h2[\s>]/g, (m) => (++h2Seen % 3 === 2 ? `${slot('in-content-' + h2Seen)}${m}` : m));
+    html += slot('after-article');
+  }
+  const words = a.body.replace(/[#*|`>\-]/g, ' ').split(/\s+/).filter(Boolean).length;
+  const readMin = Math.max(1, Math.round(words / 230));
   const h2s = parts.headings.filter((h) => h.level === 2);
   const showToc = d.toc !== false && h2s.length >= 3;
-  const toc = showToc ? `<details class="toc"><summary>In this guide</summary><ol>${h2s.map((h) => `<li><a href="#${h.id}">${esc(h.text)}</a></li>`).join('')}</ol></details>` : '';
+  const tocList = showToc ? `<details class="toc"><summary>In this guide</summary><ol>${h2s.map((h) => `<li><a href="#${h.id}">${esc(h.text)}</a></li>`).join('')}</ol></details>` : '';
+  const toc = tocList || config.ads.enabled ? `<div class="side-rail">${tocList}${config.ads.enabled ? slot('sidebar', 'ad-sidebar') : ''}</div>` : '';
+  const hasRail = Boolean(toc);
+  const pinUrl = d.pinImage ? `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(abs(articleUrl(a)))}&media=${encodeURIComponent(abs(d.pinImage))}&description=${encodeURIComponent(d.pinDescription || d.title)}` : '';
+  const pinBlock = d.pinImage ? `<section class="save-box" aria-labelledby="save-h"><img src="${d.pinImage}" alt="${esc(d.pinImageAlt)}" width="${d.pinImageWidth}" height="${d.pinImageHeight}" loading="lazy" decoding="async"><div><h2 id="save-h">Save this routine for later</h2><p>Keep the daily reset where you will see it again. This opens Pinterest in a new tab, where you choose the board. Nothing is shared from this site.</p><a class="btn btn-pin" href="${esc(pinUrl)}" target="_blank" rel="noopener noreferrer">Save to Pinterest<span class="visually-hidden"> (opens in a new tab)</span></a></div></section>` : '';
   const rel = relatedFor(a);
   const author = config.author.name ? `<span>By ${config.author.url ? `<a href="${esc(config.author.url)}">${esc(config.author.name)}</a>` : esc(config.author.name)}</span>` : '';
   const crumbs = [{ name: 'Home', url: '/' }, { name: 'Guides', url: '/guides/' }, { name: c.name, url: `/category/${c.slug}/` }, { name: d.title, url: articleUrl(a) }];
   const main = `<main id="main" tabindex="-1"><div class="container">
 ${breadcrumbHtml(crumbs)}
-<header class="article-head"><p class="eyebrow"><a href="/category/${c.slug}/" style="text-decoration:none">${esc(c.name)}</a></p><h1>${esc(d.title)}</h1><p class="dek">${esc(d.description)}</p>
-<div class="byline">${author}<span>Published <time datetime="${d.datePublished}">${fmtDate(d.datePublished)}</time></span><span>Updated <time datetime="${d.dateModified}">${fmtDate(d.dateModified)}</time></span>${previewMode ? '<span>(preview-build dates)</span>' : ''}</div></header>
-<figure class="article-hero"><img src="${d.heroImage}" alt="${esc(d.heroAlt)}" width="${d.heroWidth}" height="${d.heroHeight}" fetchpriority="high"><figcaption>${esc(d.heroCaption || 'Illustration created for this guide. It is not a photograph of a real home.')}</figcaption></figure>
-<div class="article-layout${showToc ? ' has-toc' : ''}"><article class="prose" id="article-body">${html}</article>${toc}</div>
+<div class="article-top"><header class="article-head"><p class="eyebrow"><a href="/category/${c.slug}/" style="text-decoration:none">${esc(c.name)}</a></p><h1>${esc(d.title)}</h1><p class="dek">${esc(d.description)}</p>
+<div class="byline">${author}<span>Published <time datetime="${d.datePublished}">${fmtDate(d.datePublished)}</time></span><span>Updated <time datetime="${d.dateModified}">${fmtDate(d.dateModified)}</time></span><span>${readMin} min read</span>${previewMode ? '<span>(preview-build dates)</span>' : ''}</div>
+${d.printable ? '<div class="head-actions"><a class="btn" href="#free-printable">Get the free printable</a></div>' : ''}</header>
+<figure class="article-hero"><img src="${d.heroImage}" alt="${esc(d.heroAlt)}" width="${d.heroWidth}" height="${d.heroHeight}" fetchpriority="high"><figcaption>${esc(d.heroCaption || 'Illustration created for this guide. It is not a photograph of a real home.')}</figcaption></figure></div>
+<div class="article-layout${hasRail ? ' has-toc' : ''}"><article class="prose" id="article-body">${html}${pinBlock}</article>${toc}</div>
 ${rel.length ? `<section class="related" aria-labelledby="related-h"><h2 id="related-h">Related guides</h2><ul class="post-list">${rel.map((r) => postItem(r)).join('')}</ul></section>` : ''}
 </div></main>`;
   const ld = [breadcrumbLd(crumbs), jsonld({
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: d.title, description: d.metaDescription,
     datePublished: d.datePublished, dateModified: d.dateModified, mainEntityOfPage: abs(d.canonicalPath),
-    image: [abs(config.defaultOgImage)], ...(config.author.name ? { author: { '@type': 'Person', name: config.author.name, ...(config.author.url ? { url: config.author.url } : {}) } } : {})
+    image: [...(d.pinImage ? [abs(d.pinImage)] : []), abs(config.defaultOgImage)], ...(config.author.name ? { author: { '@type': 'Person', name: config.author.name, ...(config.author.url ? { url: config.author.url } : {}) } } : {})
   })];
-  layout({ url: articleUrl(a), title: d.metaTitle, description: d.metaDescription, canonicalPath: articleUrl(a), ogType: 'article', ld, main, type: 'article', lastmod: d.dateModified });
+  const extraHead = [`<meta property="article:published_time" content="${d.datePublished}">`, `<meta property="article:modified_time" content="${d.dateModified}">`, `<meta property="article:section" content="${esc(c.name)}">`, ...(config.author.name ? [`<meta property="article:author" content="${esc(config.author.name)}">`] : [])].join('\n');
+  layout({ url: articleUrl(a), title: d.metaTitle, description: d.metaDescription, canonicalPath: articleUrl(a), ogType: 'article', ld, main, type: 'article', lastmod: d.dateModified, extraHead });
 }
 
 // -------- archives and hubs --------

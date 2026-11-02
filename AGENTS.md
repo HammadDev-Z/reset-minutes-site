@@ -9,6 +9,9 @@ This is a file-based content site. Most tasks are "add or update an article". Th
 ## What you must not change for a content task
 `scripts/*.mjs`, `src/assets/css/styles.css`, `src/assets/js/main.js`, `src/site.config.json`, `vercel.json`, `package.json`. If a design or behaviour change is genuinely needed, say so and make it as a separate, clearly described change.
 
+## Pin image fields (optional, per article)
+`pinImage` (a 1000x1500 PNG in `src/assets/images/pins/`), `pinImageAlt`, `pinImageWidth`, `pinImageHeight`, optional `pinDescription`. The Pin text must match what the article actually delivers. All four of the first fields go together (the build checks it). See `READINESS_NOTES.md`.
+
 ## Where things live
 | Need | Place |
 |---|---|
