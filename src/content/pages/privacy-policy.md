@@ -1,29 +1,50 @@
 ---
 id: P-PRIVACY
-title: Privacy Policy (template)
+title: Privacy Policy
 slug: privacy-policy
 status: published
-description: "A privacy-policy preparation template for Reset Minutes. It is not legal advice and must be completed and reviewed before launch."
-metaTitle: "Privacy Policy (template)"
-metaDescription: "Privacy policy template for Reset Minutes. Not legal advice; to be completed and reviewed by the operator."
+description: "How Reset Minutes handles reader data: what the site collects, cookies, third parties, email you send us and how to contact us."
+metaTitle: "Privacy Policy"
+metaDescription: "How Reset Minutes handles reader data: no analytics, ads, sign-ups or cookies, and how to contact us about your data."
 canonicalPath: /privacy-policy/
-noindex: true
-templateNotice: true
+noindex: false
+templateNotice: false
 ---
 
-**This page is a template, not a finished policy and not legal advice.** Gather the facts below, then write or generate the policy from them and have it reviewed for the places where you and your readers live.
+**Effective date: 3 November 2026.** This policy describes how Reset Minutes (www.resetminutes.com) handles information about its readers. It describes the site as it works today.
 
-| Item | What the operator lists |
-|---|---|
-| Data the site collects | Server logs. Analytics if enabled (for example pages, sources, device, approximate location). An email address only if an optional sign-up exists. Comments only if enabled |
-| Cookies and similar technology | Analytics cookies if analytics is enabled. Any embed (video, social). Whether a consent banner is needed depends on the jurisdiction |
-| Third parties | Hosting provider; analytics provider; email provider (if any); Pinterest (if a Save button or tag is installed); affiliate or ad networks (if any) |
-| Purposes | Understand which pages help readers; send requested emails; keep the site secure |
-| Retention | **[OWNER TO FILL]** |
-| Reader rights and contact | **[OWNER TO FILL: how to ask for access or deletion; contact email]** |
-| Children | **[OWNER TO FILL: the site is not directed to children under the applicable age]** |
-| Email consent | Clear opt-in wording; unsubscribe link; any address the law requires |
-| Jurisdiction items to check | US state privacy laws for a US audience; EU/UK rules if visitors may come from there; the operator's own country; email-marketing rules; analytics-consent rules |
-| Effective date and version | **[OWNER TO FILL]** |
+## What the site collects
 
-Current status of this build: the site includes no analytics, no ads, no sign-up form and no cookies until the operator turns them on in the site configuration.
+- **Nothing from you directly.** The site has no accounts, comments, sign-up forms or newsletter.
+- **Standard server logs.** Our hosting provider, Vercel, serves the site and may keep standard technical logs of requests, such as IP address, browser type and the pages requested. We do not use these logs to identify individual readers.
+- **No analytics and no ads.** As of the effective date the site runs no analytics and shows no advertising.
+
+## Cookies and similar technology
+
+The site itself sets no cookies and stores nothing in your browser. Search works in your browser against a file on the site, and your search words are not sent to us or to anyone else. The site loads no third-party scripts, embedded videos or social widgets.
+
+## Third parties
+
+- **Hosting:** Vercel, as described above.
+- **Pinterest:** guides include a "Save" button and the footer has a "Follow on Pinterest" link. These are ordinary links. The site loads no Pinterest script, but if you click one, Pinterest's own privacy policy applies. The pages also carry a Pinterest site-verification tag, which does not collect data from readers.
+- **Other sites:** guides link to official sources such as the CDC, the EPA and poison-control organizations. Those sites have their own policies.
+
+## If you email us
+
+If you write to the contact address, we receive your email address and your message. We use them to reply and to make corrections. We keep them only as long as needed for that, and we do not sell them or share them for marketing.
+
+## Your choices
+
+To ask what we hold about you, or to ask us to delete it, email the contact address on the [contact page](/contact/). We will reply when possible.
+
+## Children
+
+The site is general information for adults and is not directed to children.
+
+## Changes
+
+If we add analytics, advertising, a sign-up form or anything else that collects reader data, we will update this policy before turning it on, and we will change the effective date above.
+
+## Contact
+
+See the [contact page](/contact/).

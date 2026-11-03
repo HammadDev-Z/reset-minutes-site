@@ -17,7 +17,7 @@ Reset Minutes publishes cleaning routines and printable checklists for small hom
 
 ### Who runs it
 
-Reset Minutes is run by its owner, who is not named on the site. You can reach the site through the [contact page](/contact/).
+Reset Minutes is run by Hammad, who is the author of its guides. You can reach the site through the [contact page](/contact/).
 
 ### How we make the guides
 
