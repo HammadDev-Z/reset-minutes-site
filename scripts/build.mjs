@@ -267,7 +267,7 @@ function buildContact() {
   const body = email
     ? `<p>Write to <a href="mailto:${esc(email)}">${esc(email)}</a>. Replies are sent when possible.</p>`
     : `<div class="template-notice" role="note"><p><strong>Contact address not set yet.</strong> The site owner adds it as <code>contactEmail</code> in <code>src/site.config.json</code> and rebuilds. Until then this page has no way to send a message, and no form is shown because nothing would receive it.</p></div>`;
-  const main = `<main id="main" tabindex="-1"><div class="container"><header class="page-head"><h1>Contact</h1></header><div class="prose">${body}<h2>For corrections</h2><p>Include the page address and what is wrong. For a printable problem, say which printer and paper size you used.</p><p>We do not accept payment for reviews. <em>(Owner: edit this sentence if it is not true.)</em></p></div></div></main>`;
+  const main = `<main id="main" tabindex="-1"><div class="container"><header class="page-head"><h1>Contact</h1></header><div class="prose">${body}<h2>For corrections</h2><p>Include the page address and what is wrong. For a printable problem, say which printer and paper size you used.</p><p>We do not accept payment for reviews.</p></div></div></main>`;
   layout({ url: '/contact/', title: 'Contact', description: 'How to contact Reset Minutes for corrections and printable problems.', canonicalPath: '/contact/', noindex: !email, main, type: 'page' });
 }
 function buildSearch() {

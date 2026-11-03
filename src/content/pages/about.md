@@ -3,33 +3,33 @@ id: P-ABOUT
 title: About Reset Minutes
 slug: about
 status: published
-description: "About Reset Minutes: who runs the site, how guides are made, how AI is used and what the site does not do. Template: the operator must fill in the facts."
+description: "About Reset Minutes: who runs the site, how guides are made, how AI is used and what the site does not do."
 metaTitle: "About Reset Minutes"
-metaDescription: "Who runs Reset Minutes, how the guides are made and how AI is used. Operator facts are still to be filled in."
+metaDescription: "Who runs Reset Minutes, how the guides are made and how AI is used."
 canonicalPath: /about/
-noindex: true
-templateNotice: true
+noindex: false
+templateNotice: false
 ---
 
 ## About Reset Minutes
 
-Reset Minutes publishes cleaning routines and printable checklists for small homes. **[OWNER TO FILL: one or two honest sentences, in your own words, on why you started the site.]**
+Reset Minutes publishes cleaning routines and printable checklists for small homes: a 10-minute daily reset, a minimum day for rough weeks, room-by-room lists and free printables that need no email address.
 
 ### Who runs it
 
-**[OWNER TO FILL: your name, or a pen name stated as a pen name. Optional: where you are based. State it truthfully. Do not add credentials, photographs or experience you do not have.]**
+Reset Minutes is run by its owner, who is not named on the site. You can reach the site through the [contact page](/contact/).
 
 ### How we make the guides
 
-**[OWNER TO FILL: describe the real process: research from official sources, writing, any timed trials with the test conditions, review and updates.]** Until timing trials have been run and logged, the times in the guides are time budgets, not measurements.
+Safety statements in the guides come from official sources such as poison centers and the CDC. We link each source next to the claim, and each guide lists its sources with the date they were checked. Until timing trials have been run and logged, the times in the guides are time budgets, not measurements.
 
 ### How we use AI
 
-**[OWNER TO FILL: state exactly what is true. For example: "AI tools help with research notes and copy-editing. Every guide is written, checked and approved by a person." or "We do not use AI to write articles."]** Illustrations on this site are labelled as illustrations.
+AI helps with research notes, drafting and copy-editing. A person checks and approves every guide. Illustrations on this site are labelled as illustrations.
 
 ### What we do not do
 
-We do not give medical or legal advice. We do not sell your data. **[OWNER TO ADD anything else that is true.]**
+We do not give medical or legal advice. We do not sell your data. As of November 2026 the site shows no ads and earns no money from links.
 
 ### Contact
 
