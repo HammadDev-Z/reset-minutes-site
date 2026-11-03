@@ -24,6 +24,7 @@ pinImageHeight: 1500
 pinDescription: "The 10-minute daily reset for a small apartment: six short tasks with time budgets, plus a free printable checklist and a 5-minute minimum day."
 related: []
 toc: true
+featured: true
 ---
 Most cleaning schedules assume you have a free weekend. This one assumes you have a small place, a busy week and some days with almost no energy. It gives you three sizes of plan (10, 20 or 40 minutes), a three-task **minimum day** for rough weeks, a roommate version, and free printables you can download without giving an email address.
 

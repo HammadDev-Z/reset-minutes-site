@@ -251,7 +251,7 @@ const art = (extra = {}) => {
   const ART = 'guides/small-apartment-cleaning-schedule/index.html';
   const editCfg = (dir, fn) => { const cf = path.join(dir, 'site.config.json'); const c = JSON.parse(fs.readFileSync(cf, 'utf8')); fn(c); fs.writeFileSync(cf, JSON.stringify(c)); };
   { // defaults: Pin block, Rich Pin metadata, no verification tag, no ad slots
-    const s = copy('p1'); const o = path.join(tmp, 'p1_out'); const r = runBuild(s, o); const h = fs.readFileSync(path.join(o, ART), 'utf8');
+    const s = copy('p1'); editCfg(s, (c) => { c.social.pinterestDomainVerify = ''; }); const o = path.join(tmp, 'p1_out'); const r = runBuild(s, o); const h = fs.readFileSync(path.join(o, ART), 'utf8');
     const save = (h.match(/class="btn btn-pin" href="([^"]*)"/) || [])[1] || '';
     check('PINTEREST: the article has a visible 2:3 Pin image with alt text and dimensions', r.status === 0 && /<section class="save-box"[^>]*><img src="[^"]*daily-reset-checklist-pin\.png" alt="[^"]{20,}" width="1000" height="1500"/.test(h));
     check('PINTEREST: the Save button uses the official Pinterest share URL with this page and image, opens safely in a new tab and loads no third-party script', save.startsWith('https://www.pinterest.com/pin/create/button/?url=') && save.includes(encodeURIComponent('/guides/small-apartment-cleaning-schedule/')) && /rel="noopener noreferrer"/.test(h) && !/<script[^>]+src="https?:\/\/[^"]*pinterest/.test(h));
@@ -271,7 +271,7 @@ const art = (extra = {}) => {
     check('ADS (enabled): nothing in the output claims Journey, Mediavine or any ad network approval', !/journey|mediavine|raptive|adsense/i.test(h.replace(/<style[\s\S]*?<\/style>/g, '')));
   }
   { // validation of Pin fields
-    const s = copy('p4'); const f = path.join(s, 'content/articles/small-apartment-cleaning-schedule.md'); fs.writeFileSync(f, fs.readFileSync(f, 'utf8').replace(/^pinImageAlt:.*\n/m, ''));
+    const s = copy('p4'); const f = path.join(s, 'content/articles/small-apartment-cleaning-schedule.md'); fs.writeFileSync(f, fs.readFileSync(f, 'utf8').replace(/^pinImageAlt:.*\r?\n/m, ''));
     const r = runBuild(s, path.join(tmp, 'p4_out')); check('VALIDATION: pinImage without pinImageAlt stops the build with a clear message', r.status === 1 && /pinImageAlt is required with pinImage/.test(r.stderr), (r.stderr.match(/pinImage[^\n]*/) || [''])[0]);
   }
 }
