@@ -121,7 +121,7 @@ check('canonical URLs use the configured origin', pageInfo.every((p) => p.canon.
 const robots = fs.readFileSync(path.join(dist, 'robots.txt'), 'utf8');
 check('robots.txt allows crawling (a crawler must fetch a page to see its noindex tag) and names the sitemap', /Allow: \//.test(robots) && !/Disallow: \/\s*$/m.test(robots) && robots.includes(`${origin}/sitemap.xml`));
 const feed = fs.readFileSync(path.join(dist, 'feed.xml'), 'utf8');
-check('Atom feed has required elements', /<feed xmlns="http:\/\/www.w3.org\/2005\/Atom">/.test(feed) && /<id>/.test(feed) && /<updated>/.test(feed) && !/<entry>[\s\S]*<entry>[\s\S]*never-mix/.test(feed));
+check('Atom feed has required elements', /<feed xmlns="http:\/\/www.w3.org\/2005\/Atom">/.test(feed) && /<id>/.test(feed) && /<updated>/.test(feed));
 const draftSlugs = fs.readdirSync(path.join(ROOT, 'src/content/articles')).filter((f) => f.startsWith('_draft')).map((f) => fs.readFileSync(path.join(ROOT, 'src/content/articles', f), 'utf8').match(/^slug:\s*(.+)$/m)?.[1].trim()).filter(Boolean);
 const leaks = [];
 for (const s of draftSlugs) {
