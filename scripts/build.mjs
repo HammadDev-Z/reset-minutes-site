@@ -307,6 +307,20 @@ function buildFeed() {
   const entries = published.map((a) => `  <entry>\n    <title>${esc(a.data.title)}</title>\n    <link href="${esc(abs(articleUrl(a)))}"/>\n    <id>${esc(abs(articleUrl(a)))}</id>\n    <published>${a.data.datePublished}T00:00:00Z</published>\n    <updated>${a.data.dateModified}T00:00:00Z</updated>\n    <summary>${esc(a.data.description)}</summary>\n  </entry>`);
   write('feed.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n  <title>${esc(config.siteName)}</title>\n  <subtitle>${esc(config.tagline)}</subtitle>\n  <link href="${esc(abs('/feed.xml'))}" rel="self"/>\n  <link href="${esc(abs('/'))}"/>\n  <id>${esc(abs('/'))}</id>\n  <updated>${updated}T00:00:00Z</updated>\n${entries.join('\n')}\n</feed>\n`);
 }
+function buildPinterestFeed() {
+  // Pinterest RSS 2.0 feed, generated at build time (owner-requested change, 2026-11-24).
+  // Every published article that carries a Pin image joins the feed automatically, newest
+  // first, capped at 20; articles without a Pin image are skipped because a Pinterest feed
+  // item must carry an image. GUID is the canonical article URL and never changes.
+  const rfc822 = (s) => new Date(`${s}T00:00:00Z`).toUTCString();
+  const items = published.filter((a) => a.data.pinImage).slice(0, 20).map((a) => {
+    const img = abs(a.data.pinImage);
+    const size = fs.statSync(path.join(SRC, a.data.pinImage.replace(/^\//, ''))).size;
+    const title = a.data.title.length > 100 ? a.data.title.slice(0, a.data.title.lastIndexOf(' ', 97)) + '…' : a.data.title;
+    return `  <item>\n    <title>${esc(title)}</title>\n    <link>${esc(abs(articleUrl(a)))}</link>\n    <guid isPermaLink="true">${esc(abs(articleUrl(a)))}</guid>\n    <pubDate>${rfc822(a.data.datePublished)}</pubDate>\n    <description>${esc(a.data.description)}</description>\n    <media:content url="${esc(img)}" type="image/png" width="${a.data.pinImageWidth}" height="${a.data.pinImageHeight}"/>\n    <enclosure url="${esc(img)}" type="image/png" length="${size}"/>\n  </item>`;
+  });
+  write('assets/rss-pinterest.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>${esc(config.siteName)}</title>\n    <link>${esc(abs('/'))}</link>\n    <description>${esc(config.tagline)}</description>\n    <language>en-us</language>\n    <atom:link href="${esc(abs('/assets/rss-pinterest.xml'))}" rel="self" type="application/rss+xml"/>\n    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>\n${items.join('\n')}\n  </channel>\n</rss>\n`);
+}
 function buildSearchIndex() {
   const docs = published.map((a) => ({ title: a.data.title, url: `guides/${a.data.slug}/`, description: a.data.description, category: catById[a.data.category].name, tags: a.data.tags || [], text: renderMarkdown(a.body).plain.slice(0, 3000) }));
   docs.push({ title: 'Start here', url: 'start-here/', description: pages.find((p) => p.data.slug === 'start-here')?.data.description || '', category: 'Page', tags: [], text: '' });
@@ -332,6 +346,7 @@ buildSearch();
 build404();
 buildSearchIndex();
 buildFeed();
+buildPinterestFeed();
 buildSitemap();
 // Crawling stays allowed on purpose: a crawler must be able to fetch a page to see its noindex tag.
 write('robots.txt', `${previewMode ? '# PREVIEW BUILD: every page carries <meta name="robots" content="noindex, nofollow">. Set previewMode to false in src/site.config.json at launch.\n' : ''}User-agent: *\nAllow: /\n\nSitemap: ${abs('/sitemap.xml')}\n`);
