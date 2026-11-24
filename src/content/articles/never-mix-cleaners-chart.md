@@ -17,6 +17,11 @@ heroWidth: 1200
 heroHeight: 675
 printable: ""
 printableLabel: ""
+pinImage: /assets/images/pins/never-mix-cleaners-pin.png
+pinImageAlt: "Checklist titled Never Mix Cleaning Products: bleach plus vinegar makes chlorine gas, bleach plus ammonia makes chloramine gas, use one product at a time. What Poison Control, the CDC and the EPA say."
+pinImageWidth: 1000
+pinImageHeight: 1500
+pinDescription: "Never mix cleaning products: the combinations Poison Control, the CDC and the EPA name as dangerous, and the one rule that covers the rest."
 related: [A001, A003]
 toc: true
 ---

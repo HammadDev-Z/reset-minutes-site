@@ -17,6 +17,11 @@ heroWidth: 1200
 heroHeight: 675
 printable: ""
 printableLabel: ""
+pinImage: /assets/images/pins/store-cleaning-products-safely-pin.png
+pinImageAlt: "Checklist titled Store Cleaners Safely in a Small Home: latched or locked out of sight, original containers only, never in food or drink bottles, away from food, meds and pet bowls. Rules from the CPSC, EPA and Poison Control."
+pinImageWidth: 1000
+pinImageHeight: 1500
+pinDescription: "How to store cleaning products safely in a small home: latched, in original containers, away from food, medicines and pet bowls — rules from the CPSC, EPA and Poison Control."
 related: [A001, A002]
 toc: true
 ---

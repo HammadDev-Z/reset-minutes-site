@@ -17,6 +17,11 @@ heroWidth: 1200
 heroHeight: 675
 printable: ""
 printableLabel: ""
+pinImage: /assets/images/pins/cleaning-with-pets-pin.png
+pinImageAlt: "Checklist titled Cleaning With Pets in a Small Home: read the label first, keep pets away from treated areas as the label directs, never spray near pet bowls, store cleaners out of reach. What the EPA, FDA and ASPCA say."
+pinImageWidth: 1000
+pinImageHeight: 1500
+pinDescription: "Cleaning with pets in a small home: read the label first, keep pets away from treated areas as the label directs, never spray near pet bowls — what the EPA, FDA and ASPCA say."
 related: [A001, A002, A005]
 toc: true
 ---
